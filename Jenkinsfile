@@ -4,14 +4,14 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'docker build -t anji379/service:v1 .'
+                sh 'docker build -t anji379/productcatalogservice:v1 .'
             }
         }
         stage('push') {
             steps {
                 script {
                      withDockerRegistry(credentialsId: 'docker-cred') {
-                         sh 'docker push anji379/service:v1'
+                         sh 'docker push anji379/productcatalogservice:v1'
                      }
                 }
             }
