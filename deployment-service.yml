@@ -400,7 +400,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
         - name: server
-          image:  docker build -t shaikmustafa/cartservice:latest
+          image:  docker build -t anji379/cartservice:latest
           ports:
             - containerPort: 7070
           env:
