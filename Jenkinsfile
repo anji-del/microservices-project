@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'docker build -t anji379/cartservice:v1 .'
+                sh 'docker build -t anji379/cartservice:v1'
             }
         }
         stage('push') {
