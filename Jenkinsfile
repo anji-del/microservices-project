@@ -2,18 +2,25 @@ pipeline {
     agent any
 
     stages {
+        stage('Clean') {
+            steps {
+                cleanWs()
+            }
+        }
         stage('Build Docker Image') {
             steps {
-                dir('src') {
-                    sh 'docker build -t anji379/cartservice:v1 .'
+                script {
+                    // If Dockerfile is inside ./src
+                    sh 'docker build -t anji379/cartservice:v1 ./src'
                 }
             }
         }
-
         stage('Push Docker Image') {
             steps {
-                withDockerRegistry([credentialsId: 'docker-cred']) {
-                    sh 'docker push anji379/cartservice:v1'
+                script {
+                    withDockerRegistry([credentialsId: 'docker-cred', url: 'https://index.docker.io/v1/']) {
+                        sh 'docker push anji379/cartservice:v1'
+                    }
                 }
             }
         }
